@@ -1,0 +1,11 @@
+<div class="todo_container">
+  <div>
+    <input  *ngIf="todo.done === false; else boo"  type="checkbox" id="check" class="ipt_checkbox" (click)="doneTodo(todo.title)">
+    <label for="check">{{todo.title}}</label>
+  </div>
+  <button class="btn_trash" (click)="removeTodo(todo.title)"><img src="assets/img/trash.svg" alt="remove" class="trash"></button>
+</div>
+
+<ng-template #boo>
+  <input type="checkbox" checked class="ipt_checkbox" id="check" (click)="doneTodo(todo.title)">
+</ng-template>

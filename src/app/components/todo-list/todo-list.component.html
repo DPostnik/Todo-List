@@ -1,0 +1,22 @@
+  <div class="container">
+    <span class="text">Todos</span>
+    <app-new-todo (onAddNewTodo)="updateList($event)"
+    ></app-new-todo>
+      <app-todo
+          (onRemoveTodo)="removeTodo($event)"
+          (onDoneTodo)="addToDoneList($event)"
+        *ngFor="let todo of todoList"
+          [todo]="todo"
+      >
+      </app-todo>
+  </div>
+
+  <div class="container">
+    <span class="text">Todos done</span>
+    <app-todo
+      (onRemoveTodo)="removeTodo($event)"
+      *ngFor="let todo of todosDoneList"
+      [todo]="todo"
+    >
+    </app-todo>
+  </div>

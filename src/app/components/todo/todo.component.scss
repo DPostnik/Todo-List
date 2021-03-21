@@ -1,0 +1,32 @@
+.todo_container{
+  display: flex;
+  width:500px;
+  justify-content: space-between;
+  margin: 0 auto 20px auto;
+  //background-color: #eee;
+  align-items: center;
+}
+
+.ipt_checkbox{
+  margin-right: 10px;
+}
+
+.trash{
+  width:20px;
+  height: auto;
+}
+
+.todo_container:hover{
+  background-color: lavender;
+}
+
+.btn_trash{
+  background-color: #fff;
+  outline: none;
+  border: none;
+}
+.btn_trash:hover{
+  outline: none;
+  border: none;
+  background-color: red;
+}
