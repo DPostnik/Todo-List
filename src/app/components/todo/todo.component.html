@@ -3,6 +3,14 @@
     <input  *ngIf="todo.done === false; else boo"  type="checkbox" id="check" class="ipt_checkbox" (click)="doneTodo(todo.title)">
     <label for="check">{{todo.title}}</label>
   </div>
+  <div>
+      <select (change)="changePriority($event)">
+        <option selected>{{todo.priority}}</option>
+        <option *ngFor="let priority of priorities; let i = index">
+          {{priority}}
+        </option>
+      </select>
+  </div>
   <button class="btn_trash" (click)="removeTodo(todo.title)"><img src="assets/img/trash.svg" alt="remove" class="trash"></button>
 </div>
 
