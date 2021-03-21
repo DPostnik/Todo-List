@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Priority, Todo} from "../../shared/interfaces/interfaces";
+import {Todo} from "../../shared/interfaces/interfaces";
 
 @Component({
   selector: 'app-todo',
@@ -8,19 +8,13 @@ import {Priority, Todo} from "../../shared/interfaces/interfaces";
 })
 export class TodoComponent implements OnInit {
 
-  public priorities: Priority[] = [Priority.Medium,Priority.Low, Priority.High];
-
   @Input() todo: Todo;
   @Output() onRemoveTodo = new EventEmitter<string>();
   @Output() onDoneTodo = new EventEmitter<string>();
-  @Output() onChangePriority = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit(): void {
-    this.priorities = this.priorities.filter(
-      (el) => el != this.todo.priority
-    )
   }
 
   removeTodo(target: string) {
@@ -29,9 +23,5 @@ export class TodoComponent implements OnInit {
 
   doneTodo(target: string) {
     this.onDoneTodo.emit(target)
-  }
-
-  changePriority(event) {
-    this.onChangePriority.emit(`${event.target.value} ${this.todo.title}`);
   }
 }

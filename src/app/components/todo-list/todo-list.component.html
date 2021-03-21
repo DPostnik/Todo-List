@@ -5,7 +5,6 @@
       <app-todo
           (onRemoveTodo)="removeTodo($event)"
           (onDoneTodo)="addToDoneList($event)"
-          (onChangePriority)="changePriority($event)"
         *ngFor="let todo of todoList"
           [todo]="todo"
       >
