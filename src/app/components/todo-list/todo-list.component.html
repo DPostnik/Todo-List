@@ -5,12 +5,14 @@
     <app-search
       (onChangeSearchStr)="this.searchStr = $event"
     ></app-search>
+    <app-priority-filter
+    (onChangeFilterPriority)="this.priorityFilter = $event">
+    </app-priority-filter>
       <app-todo
           (onRemoveTodo)="removeTodo($event)"
           (onDoneTodo)="addToDoneList($event)"
-        *ngFor="let todo of todoList"
           (onChangePriority)="changePriority($event)"
-        *ngFor="let todo of todoList | searchName:this.searchStr"
+        *ngFor="let todo of todoList | priority:this.priorityFilter | searchName:this.searchStr"
           [todo]="todo"
       >
       </app-todo>

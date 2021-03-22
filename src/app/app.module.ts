@@ -9,6 +9,7 @@ import {FormsModule} from "@angular/forms";
 import {SearchPipe} from "./shared/pipes/search.pipe";
 import { SearchComponent } from './components/search/search.component';
 import {PriorityPipe} from "./shared/pipes/priority.pipe";
+import { PriorityFilterComponent } from './components/priority-filter/priority-filter.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {PriorityPipe} from "./shared/pipes/priority.pipe";
     NewTodoComponent,
     SearchPipe,
     SearchComponent,
-    PriorityPipe
+    PriorityPipe,
+    PriorityFilterComponent
   ],
     imports: [
         BrowserModule,

@@ -1,0 +1,5 @@
+<select (change)="changePriority($event)">
+  <option *ngFor="let priority of priorities; let i = index">
+    {{priority}}
+  </option>
+</select>

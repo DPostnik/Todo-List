@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 
 import {Priority, Todo} from "../../shared/interfaces/interfaces";
@@ -11,10 +11,12 @@ import {Priority, Todo} from "../../shared/interfaces/interfaces";
 export class TodoListComponent implements OnInit {
 
   public todoList: Todo[] = [
-    {title:'first', done: false}, {title:'second', done: false}, {title:'third', done: false}
+    {title:'first', done: false, priority: Priority.High}, {title:'second', done: false, priority: Priority.High},
+    {title:'third', done: false, priority: Priority.Medium}
   ];
   public todosDoneList: Todo[] = [];
   public searchStr =  '';
+  public priorityFilter = Priority.All;
   constructor() { }
 
   ngOnInit(): void {
@@ -23,7 +25,8 @@ export class TodoListComponent implements OnInit {
   updateList(value: string) {
     const todo: Todo = {
       title: value,
-      done: false
+      done: false,
+      priority: Priority.Medium
     }
     this.todoList.push(todo);
   }
