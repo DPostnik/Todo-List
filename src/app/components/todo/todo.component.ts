@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Todo} from "../../shared/interfaces/interfaces";
+import {Priority, Todo} from "../../shared/interfaces/interfaces";
 
 @Component({
   selector: 'app-todo',
@@ -7,7 +7,7 @@ import {Todo} from "../../shared/interfaces/interfaces";
   styleUrls: ['./todo.component.scss']
 })
 export class TodoComponent implements OnInit {
-
+  public priorities: Priority[] = [Priority.Medium,Priority.Low, Priority.High];
   @Input() todo: Todo;
   @Output() onRemoveTodo = new EventEmitter<string>();
   @Output() onDoneTodo = new EventEmitter<string>();
