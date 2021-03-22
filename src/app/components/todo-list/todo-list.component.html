@@ -2,10 +2,14 @@
     <span class="text">Todos</span>
     <app-new-todo (onAddNewTodo)="updateList($event)"
     ></app-new-todo>
+    <app-search
+      (onChangeSearchStr)="this.searchStr = $event"
+    ></app-search>
       <app-todo
           (onRemoveTodo)="removeTodo($event)"
           (onDoneTodo)="addToDoneList($event)"
-        *ngFor="let todo of todoList"
+          (onChangePriority)="changePriority($event)"
+        *ngFor="let todo of todoList | searchName:this.searchStr"
           [todo]="todo"
       >
       </app-todo>

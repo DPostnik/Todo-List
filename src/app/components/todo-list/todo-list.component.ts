@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Todo} from "../../shared/interfaces/interfaces";
+import {Priority, Todo} from "../../shared/interfaces/interfaces";
 
 @Component({
   selector: 'app-todo-list',
@@ -9,9 +9,11 @@ import {Todo} from "../../shared/interfaces/interfaces";
 export class TodoListComponent implements OnInit {
 
   public todoList: Todo[] = [
-    {title:'first', done: false}, {title:'second', done: false}, {title:'third', done: false}
+    {title:'first', done: false, priority: Priority.High}, {title:'second', done: false, priority: Priority.High},
+    {title:'third', done: false, priority: Priority.Medium}
   ];
   public todosDoneList: Todo[] = [];
+  public searchStr =  '';
   constructor() { }
 
   ngOnInit(): void {
@@ -26,17 +28,17 @@ export class TodoListComponent implements OnInit {
   }
 
   removeTodo(value: string) {
-    this.updateTodoList(value);
-    this.updateDoneList(value);
+    this.filterTodoList(value);
+    this.filterDoneList(value);
   }
 
-  private updateTodoList(value: string){
+  private filterTodoList(value: string){
     this.todoList = this.todoList.filter(
       (todo)=> todo.title != value
     )
   }
 
-  private updateDoneList(value: string){
+  private filterDoneList(value: string){
     this.todosDoneList = this.todosDoneList.filter(
       (todo)=> todo.title != value
     )
@@ -46,10 +48,31 @@ export class TodoListComponent implements OnInit {
     const todos = this.todoList.filter(
       (todo)=> todo.title == value
     )
-    this.updateTodoList(value);
+    this.filterTodoList(value);
     todos.forEach( (todo) => {
       todo.done = true;
       this.todosDoneList.push(todo);
     })
   }
+
+  changePriority(value: string) {
+    let str = value.split(' ');
+    let target = str[1];
+    let valueToChange = Priority[str[0]];
+    this.todoList.forEach(
+      (el) =>{
+        if(el.title == target){
+          el.priority = valueToChange
+        }
+      }
+    )
+    this.todosDoneList.forEach(
+      (el) =>{
+        if(el.title == target){
+          el.priority = valueToChange
+        }
+      }
+    )
+  }
+
 }
