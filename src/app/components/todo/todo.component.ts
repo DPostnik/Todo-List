@@ -26,10 +26,11 @@ export class TodoComponent implements OnInit {
   }
 
   doneTodo(target: string) {
-    this.onDoneTodo.emit(target)
+    this.onDoneTodo.emit(`${target} ${!this.todo.done}`);
   }
 
   changePriority(event) {
     this.onChangePriority.emit(`${event.target.value} ${this.todo.title}`);
   }
+
 }

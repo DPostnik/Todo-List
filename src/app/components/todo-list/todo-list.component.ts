@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 
 import {Priority, Todo} from "../../shared/interfaces/interfaces";
+import {TodoService} from '../../shared/services/todo.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -12,12 +13,12 @@ export class TodoListComponent implements OnInit {
 
   public todoList: Todo[] = [
     {title:'first', done: false, priority: Priority.High}, {title:'second', done: false, priority: Priority.High},
-    {title:'third', done: false, priority: Priority.Medium}
+    {title:'third', done: true, priority: Priority.Medium}
   ];
-  public todosDoneList: Todo[] = [];
   public searchStr =  '';
   public priorityFilter = Priority.All;
-  constructor() { }
+
+  constructor(public todoService: TodoService) { }
 
   ngOnInit(): void {
   }
@@ -31,52 +32,10 @@ export class TodoListComponent implements OnInit {
     this.todoList.push(todo);
   }
 
-  removeTodo(value: string) {
-    this.filterTodoList(value);
-    this.filterDoneList(value);
-  }
 
-  private filterTodoList(value: string){
-    this.todoList = this.todoList.filter(
-      (todo)=> todo.title != value
-    )
-  }
 
-  private filterDoneList(value: string){
-    this.todosDoneList = this.todosDoneList.filter(
-      (todo)=> todo.title != value
-    )
-  }
-
-  addToDoneList(value: string) {
-    const todos = this.todoList.filter(
-      (todo)=> todo.title == value
-    )
-    this.filterTodoList(value);
-    todos.forEach( (todo) => {
-      todo.done = true;
-      this.todosDoneList.push(todo);
-    })
-  }
-
-  changePriority(value: string) {
-    let str = value.split(' ');
-    let target = str[1];
-    let valueToChange = Priority[str[0]];
-    this.todoList.forEach(
-      (el) =>{
-        if(el.title == target){
-          el.priority = valueToChange
-        }
-      }
-    )
-    this.todosDoneList.forEach(
-      (el) =>{
-        if(el.title == target){
-          el.priority = valueToChange
-        }
-      }
-    )
+  removeTodo(value: string){
+    this.todoList = this.todoService.removeTodo(value, this.todoList);
   }
 
 }

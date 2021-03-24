@@ -1,18 +1,18 @@
   <div class="container">
-    <span class="text">Todos</span>
-    <app-new-todo (onAddNewTodo)="updateList($event)"
-    ></app-new-todo>
-    <app-search
-      (onChangeSearchStr)="this.searchStr = $event"
-    ></app-search>
-    <app-priority-filter
-    (onChangeFilterPriority)="this.priorityFilter = $event">
-    </app-priority-filter>
+      <span class="text">Todos</span>
+      <app-new-todo (onAddNewTodo)="updateList($event)"
+      ></app-new-todo>
+      <app-search
+        (onChangeSearchStr)="this.searchStr = $event"
+      ></app-search>
+      <app-priority-filter
+      (onChangeFilterPriority)="this.priorityFilter = $event">
+      </app-priority-filter>
       <app-todo
           (onRemoveTodo)="removeTodo($event)"
-          (onDoneTodo)="addToDoneList($event)"
-          (onChangePriority)="changePriority($event)"
-        *ngFor="let todo of todoList | priority:this.priorityFilter | searchName:this.searchStr"
+          (onDoneTodo)="todoService.updateState($event,this.todoList)"
+          (onChangePriority)="todoService.changePriority($event,this.todoList)"
+        *ngFor="let todo of todoService.getUndoneTodoList(todoList) | priority:this.priorityFilter | searchName:this.searchStr"
           [todo]="todo"
       >
       </app-todo>
@@ -22,7 +22,9 @@
     <span class="text">Todos done</span>
     <app-todo
       (onRemoveTodo)="removeTodo($event)"
-      *ngFor="let todo of todosDoneList"
+      (onDoneTodo)="todoService.updateState($event,this.todoList)"
+      (onChangePriority)="todoService.changePriority($event,this.todoList)"
+      *ngFor="let todo of todoService.getDoneTodoList(todoList)"
       [todo]="todo"
     >
     </app-todo>
