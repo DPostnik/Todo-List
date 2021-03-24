@@ -1,5 +1,6 @@
   <div class="container">
       <span class="text">Todos</span>
+    <app-notificator [notification]="notification.toString()"></app-notificator>
       <app-new-todo (onAddNewTodo)="updateList($event)"
       ></app-new-todo>
       <app-search

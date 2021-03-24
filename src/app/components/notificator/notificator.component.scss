@@ -1,0 +1,22 @@
+.notificator_container{
+  width:400px;
+  margin: 0 auto 40px auto;
+  height: 50px;
+  color: black;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success_add{
+  background-color: #6fe26f;
+}
+
+.error{
+  background-color: #fc5464;
+}
+
+.success_remove{
+  background-color: #7aefca;
+}

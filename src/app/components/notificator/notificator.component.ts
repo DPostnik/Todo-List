@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Notification} from "../../shared/interfaces/interfaces";
 
 @Component({
@@ -8,9 +8,8 @@ import {Notification} from "../../shared/interfaces/interfaces";
 })
 export class NotificatorComponent implements OnInit {
 
-  public notificator: Notification[] = [
-    Notification.Create, Notification.Error, Notification.Remove
-  ]
+  @Input() notification: string;
+
   constructor() { }
 
   ngOnInit(): void {

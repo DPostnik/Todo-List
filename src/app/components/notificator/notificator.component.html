@@ -1,3 +1,17 @@
-<div class="notificator_container">
-  <p>{{notificator}}</p>
-</div>
+<ng-template [ngIf]="notification == 'Successfully add new todo'">
+  <div class="notificator_container success_add">
+    <p>{{notification}}</p>
+  </div>
+</ng-template>
+
+<ng-template [ngIf]="notification == 'Successfully remove new todo'">
+  <div class="notificator_container success_remove">
+    <p>{{notification}}</p>
+  </div>
+</ng-template>
+
+<ng-template [ngIf]="notification == 'Error was appear'">
+  <div class="notificator_container error">
+    <p>{{notification}}</p>
+  </div>
+</ng-template>

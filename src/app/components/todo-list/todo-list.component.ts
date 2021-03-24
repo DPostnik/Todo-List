@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-
-
-import {Priority, Todo} from "../../shared/interfaces/interfaces";
+import {Notification, Priority, Todo} from '../../shared/interfaces/interfaces';
 import {TodoService} from '../../shared/services/todo.service';
 
 @Component({
@@ -17,6 +15,7 @@ export class TodoListComponent implements OnInit {
   ];
   public searchStr =  '';
   public priorityFilter = Priority.All;
+  public notification = Notification.No;
 
   constructor(public todoService: TodoService) { }
 
@@ -24,17 +23,26 @@ export class TodoListComponent implements OnInit {
   }
 
   updateList(value: string) {
-    const todo: Todo = {
-      title: value,
-      done: false,
-      priority: Priority.Medium
+    if(!this.todoService.checkIncludes(value,this.todoList)) {
+      const todo: Todo = {
+        title: value,
+        done: false,
+        priority: Priority.Medium
+      }
+      this.todoList.push(todo);
+      this.notification = Notification.Create
     }
-    this.todoList.push(todo);
+    else{
+      this.notification = Notification.Error
+    }
+    setTimeout(() => this.notification = this.notification = Notification.No, 4000);
   }
 
 
 
   removeTodo(value: string){
+    this.notification = Notification.Remove
+    setTimeout(()=>this.notification = this.notification = Notification.No,4000);
     this.todoList = this.todoService.removeTodo(value, this.todoList);
   }
 

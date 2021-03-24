@@ -48,4 +48,16 @@ export class TodoService{
       }
     )
   }
+
+  checkIncludes(value: string, todoList: Todo[]) {
+    let bool = false;
+    todoList.forEach(
+      (el)=> {
+        if (el.title == value)
+          bool = true;
+          }
+    )
+    return bool;
+  }
+
 }

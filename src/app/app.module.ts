@@ -10,6 +10,7 @@ import {SearchPipe} from "./shared/pipes/search.pipe";
 import { SearchComponent } from './components/search/search.component';
 import {PriorityPipe} from "./shared/pipes/priority.pipe";
 import { PriorityFilterComponent } from './components/priority-filter/priority-filter.component';
+import { NotificatorComponent } from './components/notificator/notificator.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PriorityFilterComponent } from './components/priority-filter/priority-f
     SearchPipe,
     SearchComponent,
     PriorityPipe,
-    PriorityFilterComponent
+    PriorityFilterComponent,
+    NotificatorComponent,
   ],
     imports: [
         BrowserModule,

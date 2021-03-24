@@ -7,3 +7,7 @@ export interface Todo{
 export enum Priority{
   Low = 'Low', Medium = 'Medium', High = 'High', All = 'All'
 }
+
+export enum Notification{
+  No = '', Create = 'Successfully add new todo', Error = `Error was appear`, Remove = 'Successfully remove new todo'
+}
