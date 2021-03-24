@@ -21,6 +21,25 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.todoList = this.content.getContent();
+    if(!this.todoList){
+      this.todoList = [
+        {
+          title: 'first',
+          priority: Priority.Medium,
+          done: true
+        },
+        {
+          title: 'second',
+          priority: Priority.Low,
+          done: false
+        },
+        {
+          title: 'main',
+          priority: Priority.High,
+          done: false
+        },
+      ]
+    }
   }
 
   ngOnDestroy(): void {

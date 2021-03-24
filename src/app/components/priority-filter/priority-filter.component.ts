@@ -15,7 +15,6 @@ export class PriorityFilterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   changePriority(event) {
     this.onChangeFilterPriority.emit(event.target.value);
   }
