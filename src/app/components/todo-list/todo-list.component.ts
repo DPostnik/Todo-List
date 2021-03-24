@@ -1,29 +1,35 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Notification, Priority, Todo} from '../../shared/interfaces/interfaces';
 import {TodoService} from '../../shared/services/todo.service';
+import {TodoContentService} from '../../shared/services/todo-content.service';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss']
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent implements OnInit, OnDestroy {
 
-  public todoList: Todo[] = [
-    {title:'first', done: false, priority: Priority.High}, {title:'second', done: false, priority: Priority.High},
-    {title:'third', done: true, priority: Priority.Medium}
-  ];
+  public todoList: Todo[] = [];
   public searchStr =  '';
   public priorityFilter = Priority.All;
   public notification = Notification.No;
+  public loading = false;
 
-  constructor(public todoService: TodoService) { }
+  constructor(public todoService: TodoService,
+              private content: TodoContentService) { }
 
   ngOnInit(): void {
+    this.todoList = this.content.getContent();
+  }
+
+  ngOnDestroy(): void {
+    this.content.saveContent(this.todoList);
   }
 
   updateList(value: string) {
     if(!this.todoService.checkIncludes(value,this.todoList)) {
+      this.loading = true;
       const todo: Todo = {
         title: value,
         done: false,
@@ -35,10 +41,12 @@ export class TodoListComponent implements OnInit {
     else{
       this.notification = Notification.Error
     }
-    setTimeout(() => this.notification = this.notification = Notification.No, 4000);
+    setTimeout(() =>
+    {
+      this.notification = this.notification = Notification.No;
+      this.loading = false;
+    } , 4000);
   }
-
-
 
   removeTodo(value: string){
     this.notification = Notification.Remove
@@ -46,4 +54,7 @@ export class TodoListComponent implements OnInit {
     this.todoList = this.todoService.removeTodo(value, this.todoList);
   }
 
+  saveData() {
+    this.content.saveContent(this.todoList);
+  }
 }
