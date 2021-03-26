@@ -11,6 +11,7 @@ import { SearchComponent } from './components/search/search.component';
 import {PriorityPipe} from "./shared/pipes/priority.pipe";
 import { PriorityFilterComponent } from './components/priority-filter/priority-filter.component';
 import { NotificatorComponent } from './components/notificator/notificator.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { NotificatorComponent } from './components/notificator/notificator.compo
   ],
     imports: [
         BrowserModule,
-        FormsModule
+        FormsModule,
+        BrowserAnimationsModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

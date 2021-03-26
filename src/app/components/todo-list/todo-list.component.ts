@@ -6,7 +6,8 @@ import {TodoContentService} from '../../shared/services/todo-content.service';
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.scss']
+  styleUrls: ['./todo-list.component.scss'],
+  animations: [ ]
 })
 export class TodoListComponent implements OnInit, OnDestroy {
 
@@ -22,22 +23,19 @@ export class TodoListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.todoList = this.content.getContent();
     if(!this.todoList){
-      this.todoList = [
-        {
+      this.todoList = [{
           title: 'first',
           priority: Priority.Medium,
           done: true
-        },
-        {
+        }, {
           title: 'second',
           priority: Priority.Low,
           done: false
-        },
-        {
+        }, {
           title: 'main',
           priority: Priority.High,
           done: false
-        },
+        }
       ]
     }
   }
@@ -56,15 +54,13 @@ export class TodoListComponent implements OnInit, OnDestroy {
       }
       this.todoList.push(todo);
       this.notification = Notification.Create
-    }
-    else{
+    } else {
       this.notification = Notification.Error
     }
-    setTimeout(() =>
-    {
+    setTimeout(() => {
       this.notification = this.notification = Notification.No;
       this.loading = false;
-    } , 4000);
+    } , 5000);
   }
 
   removeTodo(value: string){
@@ -76,4 +72,5 @@ export class TodoListComponent implements OnInit, OnDestroy {
   saveData() {
     this.content.saveContent(this.todoList);
   }
+
 }

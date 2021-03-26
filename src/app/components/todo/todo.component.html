@@ -1,4 +1,4 @@
-<div class="todo_container">
+<div [@removeTodo]="removed ? 'end' : 'start' " class="todo_container">
   <div>
     <input  *ngIf=" todo.done === false; else boo"  type="checkbox" id="check" class="ipt_checkbox" (click)="doneTodo(todo.title)">
     <label for="check">{{todo.title}}</label>

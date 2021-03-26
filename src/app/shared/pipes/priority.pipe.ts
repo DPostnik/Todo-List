@@ -4,7 +4,7 @@ import {Priority, Todo} from "../interfaces/interfaces";
 @Pipe({
     name: 'priority'
   })
-export class PriorityPipe implements PipeTransform{
+export class PriorityPipe implements PipeTransform {
   transform(todos: Todo[], priority: Priority): Todo[] {
     if(priority == Priority.All){
       return todos;
