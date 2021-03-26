@@ -1,4 +1,4 @@
-<div>
-  <input type="text" [(ngModel)]="searchStr">
-  <button (click)="SearchStr($event)">Search</button>
+<div class="container">
+  <input type="text" [(ngModel)]="searchStr" class="input__search" placeholder="Search...">
+  <button (click)="SearchStr($event)" class="btn__search"><img src="./assets/img/search.svg" alt="search" class="img__search"></button>
 </div>

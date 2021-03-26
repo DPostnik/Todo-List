@@ -1,26 +1,33 @@
   <div class="container">
-      <span class="text">Todos</span>
-    <app-notificator [notification]="notification.toString()"></app-notificator>
-      <app-new-todo (onAddNewTodo)="updateList($event)"
+    <span class="text_1 text">Todos</span>
+
+    <app-notificator [notification]="notification.toString()"
+    ></app-notificator>
+
+    <app-new-todo (onAddNewTodo)="updateList($event)"
       ></app-new-todo>
-      <app-search
-        (onChangeSearchStr)="this.searchStr = $event"
-      ></app-search>
-      <app-priority-filter
+
+    <app-search
+      (onChangeSearchStr)="this.searchStr = $event"
+    ></app-search>
+
+    <app-priority-filter
       (onChangeFilterPriority)="this.priorityFilter = $event">
-      </app-priority-filter>
-      <app-todo
-          (onRemoveTodo)="removeTodo($event)"
-          (onDoneTodo)="todoService.updateState($event,this.todoList)"
-          (onChangePriority)="todoService.changePriority($event,this.todoList)"
-        *ngFor="let todo of todoService.getUndoneTodoList(todoList) | priority:this.priorityFilter | searchName:this.searchStr"
-          [todo]="todo"
-      >
-      </app-todo>
+    </app-priority-filter>
+
+    <app-todo
+      (onRemoveTodo)="removeTodo($event)"
+      (onDoneTodo)="todoService.updateState($event,this.todoList)"
+      (onChangePriority)="todoService.changePriority($event,this.todoList)"
+      *ngFor="let todo of todoService.getUndoneTodoList(todoList) | priority:this.priorityFilter | searchName:this.searchStr"
+      [todo]="todo"
+    >
+    </app-todo>
   </div>
 
   <div class="container">
-    <span class="text">Todos done</span>
+    <span class="text_2 text">Todos done</span>
+
     <app-todo
       (onRemoveTodo)="removeTodo($event)"
       (onDoneTodo)="todoService.updateState($event,this.todoList)"
@@ -31,4 +38,4 @@
     </app-todo>
   </div>
 
-  <button (click)="saveData()" [disabled]="loading">Save data</button>
+  <button class="btn-save" (click)="saveData()" [disabled]="loading">Save data</button>

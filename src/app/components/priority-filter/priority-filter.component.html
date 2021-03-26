@@ -1,5 +1,7 @@
-<select (change)="changePriority($event)">
-  <option *ngFor="let priority of priorities; let i = index">
-    {{priority}}
-  </option>
-</select>
+<div [ngStyle]="{ marginBottom: '15px' }">
+  <select (change)="changePriority($event)">
+    <option *ngFor="let priority of priorities; let i = index">
+      {{priority}}
+    </option>
+  </select>
+</div>
