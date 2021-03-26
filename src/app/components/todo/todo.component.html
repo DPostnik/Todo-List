@@ -7,7 +7,7 @@
     <select (change)="changePriority($event)">
       <option selected>{{todo.priority}}</option>
       <option *ngFor="let priority of priorities; let i = index">
-        {{priority}}
+        {{ priority }}
       </option>
     </select>
   </div>

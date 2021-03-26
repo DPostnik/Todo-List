@@ -23,7 +23,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 })
 export class TodoComponent implements OnInit {
   public removed = false;
-  public priorities: Priority[] = [Priority.Medium,Priority.Low, Priority.High];
+  public priorities;
   @Input() todo: Todo;
   @Output() onRemoveTodo = new EventEmitter<string>();
   @Output() onDoneTodo = new EventEmitter<string>();
@@ -32,9 +32,7 @@ export class TodoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.priorities = this.priorities.filter(
-      (el) => el != this.todo.priority
-    )
+    this.updateOtherPriorities()
   }
 
   removeTodo(target: string) {
@@ -50,6 +48,14 @@ export class TodoComponent implements OnInit {
 
   changePriority(event) {
     this.onChangePriority.emit(`${event.target.value} ${this.todo.title}`);
+    this.updateOtherPriorities()
+  }
+
+  private updateOtherPriorities(){
+    const keys = Object.keys(Priority);
+    this.priorities = keys.filter((key)=>
+      key != this.todo.priority && key!='All'
+    )
   }
 
 }
