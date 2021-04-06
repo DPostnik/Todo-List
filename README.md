@@ -1,27 +1,18 @@
-# Todolist
+#Angular TODO
+Средствами Angular реализовано небольшое SPA приложение для заметок.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.4.
+пункты:
 
-## Development server
+-[x] Создание задач, удаление задач, пометка что задача выполнена
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+-[x] Приоритет у задач (фильтры)
 
-## Code scaffolding
+-[x] Поиск по задачам, фильтр по приоритетам
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+-[x] Уведомления в приложении ( о удалении, создании и при ошибках)
 
-## Build
+-[x] Сохранение задач в LocalStorage и вывод при заходе
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+-[x] Анимация (при удалении задач и добавлении)
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Каждый выполненный пункт разбит на коммиты с описание конкретной деятельноти на каждом этапе
